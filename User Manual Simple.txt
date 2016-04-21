@@ -1,0 +1,52 @@
+Berikut step step yang dilakukan untuk mempunyai blog dengan nama domain semdri
+
+I Pembelian Domain
+1. Anda harus membeli domain terlebih dahulu sebelumnya
+2. Di kasus ini anda hanya perlu membeli domain saja
+3. Cek ketersediaan domain anda.
+4. set dns yang akan anda pakai.
+5. jika anda belum mempunya dns.skip saja.
+6. setelah verivikasi data. maka akan muncul tagihan untuk pembayaran domain tersebut.
+7. setelah anda melakukan pembayaran.maka verivikasi data pembayaran anda sesuai nomor tagihan.
+8. jika anda sudah selesai verifikasi data pembayaran anda.maka jarap tunggu di tempat yang menyediakan jasa penjualan domain mengkonfirmasi data anda.
+9. Selesai
+
+II Pembuatan Wordpress di openshift.
+1. Setelah anda mempunyai domain sendiri , anda masuk ke openshift.com.
+2. Lakukan pendaftaran. jika anda sudah mempunyai id openshift langsung login saja.
+3. Masuk tab Application. 
+4. Pilih "Add Aplication".
+5. Pilih Wordpress
+6. Set nama blog wordpressnya
+7. Finsih
+8. Additional anda dapat menginstal phpmyadmin untuk mempermudah proses pengelolaan database mysql anda
+
+III Custom Domain
+1. Setelah membat wordpress tadi.
+2. Pertama tama anda mengganti aliasnya.
+3. Ganti sesuai nama yang anda mau. misal : www.aimanfadhil.com
+4. Setting Pointing dan DNS
+5. Untuk Set DNS saya menggunakan CloudFlare
+6. Pertama tama anda harus mempunyai akun Cloudflare.jika anda belum mempunyainya anda dapat mendaftar terlebih dahulu.
+7. Scan Domain : Masukan nama domain anda . misal : aimanfadhil.com
+8. Setelah itu Add Record
+9. Masukkan 2 Record ini : 
+	*) Type=A ; Name=(namadomainanda)misal : aimanfadhil.com; Value=(IP Wordpressanda) misal : 54.1.164.85
+	*) Type=CNAME ; Name=www; Value=(namablogwordpressanda) misal : myblog-aimanfadhil.rhcloud.com
+10. Continue
+11. Pilih Free Website jika yang anda inginkan adalah gratis
+12. Setelah itu Cloudflare akan memberikan saran untuk mengganti DNS yang ada di domain anda dengan DNS yang telah disediakan oleh Cloudflare
+13. Ganti DNS anda :
+	*) Masuk ketempat pembelian domain anda
+	*) Pilih domain yang anda ganti DNSnya.(ingat domain harus sesuai dengan yang anda daftarkan di CloudFlare)
+	*) Simpan
+14. Masuk ke CloudFlare lagi
+15. Pilih tab Page Rule
+16. Create New Rule
+17. Pilih typenya "Forwarding"
+18. From nya anda ketikan dengan (namadomainandatadi) misalkan seperti contoh saya.berarti diisikan dengan aimanfadhil.com
+19. Tujuannya disikan dengan www.aimanfadhil.com
+20. Setting wordpress anda supaya menonaktifkan ssl.Caranya dengan :
+	*) Buka file wp-config anda 
+	*) Ubah define('FORCE_SSL_ADMIN', true); menjadi define('FORCE_SSL_ADMIN', false);
+21. Setting Wordpress Adress anda dan Site Adress di Wordpress anda menjadi "http://www.aimanfadhil.com"
